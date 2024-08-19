@@ -8,7 +8,7 @@ class CreateSongs < ActiveRecord::Migration[7.1]
       t.string :artist
       t.integer :price
       t.boolean :available
-
+      t.references :user, null: false, foreign_key: true
       t.timestamps
     end
   end

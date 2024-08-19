@@ -4,4 +4,5 @@ class Song < ApplicationRecord
   validates :album, presence: true
   # validates :available, default: true
   validates :price, presence: true
+  belongs_to :user
 end

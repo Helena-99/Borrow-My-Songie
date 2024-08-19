@@ -8,7 +8,10 @@ class SongsController < ApplicationController
   end
 
   def create
+    # raise
+    @user = current_user
     @song = Song.new(song_params)
+    @song.user = @user
     if @song.save
       redirect_to songs_path
     else
@@ -19,6 +22,6 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title, :image_url, :release_year, :artist, :album, :price, :available)
+    params.require(:song).permit(:title, :image_url, :release_year, :artist, :album, :price)
   end
 end
