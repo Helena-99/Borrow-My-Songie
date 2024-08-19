@@ -1,0 +1,13 @@
+<div>
+  <%= simple_form_for @song do |f| %>
+  <div>
+    <%= f.input :title, class:"col-auto" %>
+    <%= f.input :artist %>
+    <%= f.input :album %>
+    <%= f.input :release_year, label: 'Year' %>
+    <%= f.input :price, label: 'Price per day'%>
+    <%= f.input :image_url %>
+  </div>
+    <%= f.button :submit, "Add song", class: "btn btn-secondary" %>
+  <% end %>
+</div>
