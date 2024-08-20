@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'songs/:id', to: 'songs#show'
 
   resources :songs, only: [:index, :new, :create, :show] do
-    resources :bookings
+    resources :bookings, only: [:new, :create]
   end
 
 
