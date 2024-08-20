@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   post 'songs', to: 'songs#create'
   get 'dashboard', to: 'dashboard#show'
 
-  get 'songs/:id', to: 'songs#show'
+  get 'songs/:id', to: 'songs#show', as: "song"
 end
