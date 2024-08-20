@@ -1,9 +1,14 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'faker'
+
+Song.destroy_all
+
+10.times do
+  Song.create!(
+    title: Faker::Music::RockBand.song,           # Generates a random song title
+    release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
+    album: Faker::Music.album,                    # Generates a random album name
+    price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
+    user_id: 1
+  )
+end
+puts '10 songs have been created!'
