@@ -1,13 +1,15 @@
-<div>
+<div data-controller="image-search">
   <%= simple_form_for @song do |f| %>
   <div>
     <%= f.input :title, class:"col-auto" %>
-    <%= f.input :artist %>
-    <%= f.input :album %>
+    <%= f.input :artist, input_html: {data: {image_search_target: "artist"}}%>
+    <%= f.input :album, input_html: {data: {action: "change->image-search#searchImage"}} %>
     <%= f.input :release_year, label: 'Year' %>
     <%= f.input :price, label: 'Price per day'%>
     <%= f.input :image_url %>
   </div>
     <%= f.button :submit, "Add song", class: "btn btn-secondary" %>
   <% end %>
+  <div class="container" data-image-search-target="display-image">
+  </div>
 </div>

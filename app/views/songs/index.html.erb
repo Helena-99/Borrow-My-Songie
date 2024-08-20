@@ -1,1 +1,17 @@
-<h1>All songs</h1>
+<div class="container">
+    <h1>All songs</h1>
+  <div class="all-songs">
+    <% @songs.each do |song| %>
+      <div class="card-product mb-3 d-flex">
+        <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+        <div class="card-product-infos">
+            <h2><%= song.title %></h2>
+            <p><%= song.artist %></p>
+            <p>£<%= song.price %> per day</p>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+  <%= link_to "Add a new song", songs_new_path, class: "btn btn-primary" %>
+</div>
