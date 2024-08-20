@@ -6,6 +6,7 @@ Song.destroy_all
   Song.create!(
     title: Faker::Music::RockBand.song,           # Generates a random song title
     release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
+    artist: Faker::Music.band,
     album: Faker::Music.album,                    # Generates a random album name
     price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
     user_id: 1
