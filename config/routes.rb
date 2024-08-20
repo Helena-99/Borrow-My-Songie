@@ -9,10 +9,16 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-  get 'songs', to: 'songs#index'
-  get 'songs/new', to: 'songs#new'
-  post 'songs', to: 'songs#create'
+  # get 'songs', to: 'songs#index'
+  # get 'songs/new', to: 'songs#new'
+  # post 'songs', to: 'songs#create'
   get 'dashboard', to: 'dashboard#show'
 
-  get 'songs/:id', to: 'songs#show'
+  # get 'songs/:id', to: 'songs#show'
+
+  resources :songs, only: [:index, :new, :create, :show] do
+    resources :bookings, only: [:new, :create]
+  end
+
+
 end

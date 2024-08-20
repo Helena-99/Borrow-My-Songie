@@ -27,9 +27,26 @@
 </p>
 <p>
 <strong>Availability:</strong>
+
 Still have to do this!!
 </p>
 
 <%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
 <%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
+<div>
+  <%= simple_form_for [@song,@booking] do |f| %>
+  <div>
+    <%= f.input :start_date,
+    as: :string,
+    input_html: { data: { controller: "datepicker" } }
+    %>
+    <%= f.input :end_date,
+    as: :string,
+    input_html: { data: { controller: "datepicker" } }
+    %>
+  </div>
+    <%= f.button :submit, "Rent", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
 </div>
