@@ -9,10 +9,12 @@ class DashboardController < ApplicationController
 
     # MY PURCHASES
     @my_purchases = Booking.includes(:song).where(user_id: @user.id)
-    # @my_purchases = Song.joins(:bookings).where(bookings: { user_id: @user.id })
+
     # Songs I've requested to book that are pending approval
 
     # Songs I'm currently renting
 
   end
 end
+
+# @my_purchases = Song.joins(:bookings).where(bookings: { user_id: @user.id })
