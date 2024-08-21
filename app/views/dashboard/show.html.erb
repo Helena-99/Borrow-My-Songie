@@ -4,27 +4,31 @@
     <div class="col">
       <h2> My songs </h2>
         <% @my_songs.each do |song| %>
-        <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-            <h2> <%= song.title %> </h2>
-            <p><%= song.album %> - <%= song.release_year %></p>
-          </div>
-        </div>
+          <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+              <h2> <%= song.title %> </h2>
+              <p><%= song.album %> - <%= song.release_year %></p>
+              <p>Status: <%= song.available ? "Available" : "Booked" %></p>
+            </div>
         <%# need to add avalibility %>
-      <% end %>
-      </div>
-    <div class="col">
-      <h2> My rents </h2>
-      <% @my_songs.each do |song| %>
-        <div class="card-product">
-          <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-          <div class="card-product-infos">
-            <h2> <%= song.title %> </h2>
-            <p><%= song.album %> - <%= song.release_year %></p>
-          </div>
-        </div>
-        <%# need to add avalibility %>
-      <% end %>
+          <% end %>
+        <% end %>
     </div>
+
+    <div class="col">
+      <h2> My purchases </h2>
+        <% @my_purchases.each do |booking| %>
+          <%= link_to song_path(booking.song), class: 'card-product mb-3 d-flex' do %>
+            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <div class="card-product-infos">
+              <h2> <%= booking.song.title %> </h2>
+              <p><%= booking.song.album %> - <%= booking.song.release_year %></p>
+              <p>Status: <%= booking.status %></p>
+            </div>
+        <%# need to add avalibility %>
+          <% end %>
+        <% end %>
+    </div>
+  </div>
 </div>
