@@ -26,7 +26,7 @@ ines = User.create!(
     album: Faker::Music.album,                    # Generates a random album name
     price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
     user: oliver,
-    available: true
+    available: [ "true", "false" ].sample
   )
 end
 
@@ -40,7 +40,7 @@ puts '5 songs for oliver have been created!'
     album: Faker::Music.album,                    # Generates a random album name
     price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
     user: ines,
-    available: true
+    available: [ "true", "false" ].sample
   )
 end
 

@@ -1,11 +1,11 @@
 <h1> My dashboard</h1>
-<div class="container">
+<div class="container mb-3">
   <div class="row">
     <div class="col">
       <h2> My songs </h2>
         <% @my_songs.each do |song| %>
           <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+            <img src="<% song.image_url %>" />
             <div class="card-product-infos">
               <h2> <%= song.title %> </h2>
               <p><%= song.album %> - <%= song.release_year %></p>
@@ -14,17 +14,20 @@
         <%# need to add avalibility %>
           <% end %>
         <% end %>
+    <%= link_to "Add a new song", new_song_path, class: "btn btn-primary" %>
     </div>
+
+
 
     <div class="col">
       <h2> My purchases </h2>
         <% @my_purchases.each do |booking| %>
           <%= link_to song_path(booking.song), class: 'card-product mb-3 d-flex' do %>
-            <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-            <div class="card-product-infos">
+            <img src="<% booking.song.image_url %>" />
+          <div class="card-product-infos">
               <h2> <%= booking.song.title %> </h2>
               <p><%= booking.song.album %> - <%= booking.song.release_year %></p>
-              <p>Status: <%= booking.status %></p>
+              <p>Status: <%= "Confirmed" %></p> <%# change this when booking.status is coded  %>
             </div>
         <%# need to add avalibility %>
           <% end %>
