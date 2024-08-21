@@ -1,10 +1,11 @@
 
-<div class = "container">
+<div class = "container m-4">
 
-<% if @song.image_url.present? %>
-<%= image_tag @song.image_url%>
-<% end %>
+  <% if @song.image_url.present? %>
+    <%= image_tag @song.image_url%>
+  <% end %>
 
+<<<<<<< HEAD
 <p>
 <strong>Title:</strong>
 <%= @song.title %>
@@ -30,34 +31,56 @@
 <%= @song.user.first_name %> <%= @song.user.last_name %></p>
 </p>
 
+=======
+  <p>
+  <strong>Title:</strong>
+  <%= @song.title %>
+  </p>
+  <p>
+  <strong>Artist:</strong>
+  <%= @song.artist %>
+  </p>
+  <p>
+  <strong>Album:</strong>
+  <%= @song.album %>
+  </p>
+  <p>
+  <strong>Release year:</strong>
+  <%= @song.release_year %>
+  </p>
+  <p>
+  <strong>Price per day:</strong>
+  <%= @song.price %>
+  </p>
+  <p>
+  <strong>Owner:</strong>
+  <%= @song.user.first_name %> <%= @song.user.last_name %></p>
+  </p>
+  <p>
+  <%# <strong>Availability:</strong>
+
+Still have to do this!!
+</p>
+<div>
+>>>>>>> master
 <%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
 <%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
 <div>
   <%= simple_form_for [@song,@booking] do |f| %>
   <div>
-    <%= f.input :start_date,
-    as: :string,
-    input_html: { data: { controller: "datepicker" } }
-    %>
-    <%= f.input :end_date,
-    as: :string,
-    input_html: { data: { controller: "datepicker" } }
-    %>
+    <%= simple_form_for [@song,@booking] do |f| %>
+    <div>
+      <%= f.input :start_date,
+      as: :string,
+      input_html: { data: { controller: "datepicker" } }
+      %>
+      <%= f.input :end_date,
+      as: :string,
+      input_html: { data: { controller: "datepicker" } }
+      %>
+    </div>
+      <%= f.button :submit, "Rent", class: "btn btn-primary" %>
+    <% end %>
   </div>
-    <%= f.button :submit, "Rent", class: "btn btn-primary" %>
-  <% end %>
-</div>
 
-</div>
-
-
-<div>
-  <% @bookings.each do |booking| %>
-    <%= booking.start_date %>
-    <%= booking.end_date %>
-  <% end %>
-</div>
-
-<div data-controller="datepicker">
-  <div data-datepicker-target="dates" data-dates-json="<%= @dates.to_json %>"></div>
 </div>
