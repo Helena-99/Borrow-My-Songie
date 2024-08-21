@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
   def index
-    @songs = Song.all
+    @user = current_user
+    @songs = Song.where.not(user_id: @user.id)
   end
 
   def new
@@ -22,6 +23,10 @@ class SongsController < ApplicationController
   def show
     @song = Song.find(params[:id])
     @booking = Booking.new
+    @bookings = @song.bookings
+    @dates = @bookings.map do |booking|
+      [ booking.start_date.to_s, booking.end_date.to_s ]
+    end
   end
 
   private
