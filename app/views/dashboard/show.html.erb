@@ -1,8 +1,12 @@
-<h1> My dashboard</h1>
 <div class="container mb-3">
+<h1> My dashboard</h1>
   <div class="row">
     <div class="col">
-      <h2> My songs </h2>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2> My songs </h2>
+        <%= link_to "Upload a new song", new_song_path, class: "btn btn-primary height:25%" %>
+      </div>
+
         <% @my_songs.each do |song| %>
           <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
             <img src="<%= song.image_url %>" />
@@ -20,7 +24,10 @@
 
 
     <div class="col">
-      <h2> My purchases </h2>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h2> My purchases </h2>
+        <%= link_to "Browse all songs", songs_path, class: "btn btn-primary height:25%" %>
+      </div>
         <% @my_purchases.each do |booking| %>
           <%= link_to song_path(booking.song), class: 'card-product mb-3 d-flex' do %>
             <img src="<%= booking.song.image_url %>" />
