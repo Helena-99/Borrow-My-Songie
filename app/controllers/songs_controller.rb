@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
   def index
-    @songs = Song.all
+    @user = current_user
+    @songs = Song.where.not(user_id: @user.id)
   end
 
   def new
