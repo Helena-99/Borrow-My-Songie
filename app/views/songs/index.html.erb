@@ -1,5 +1,9 @@
 <div class="container">
+  <div class= "d-flex justify-content-between align-items-center">
     <h1>All songs</h1>
+    <%= link_to "Upload a new song", new_song_path, class: "btn btn-primary height:25%" %>
+  </div>
+
   <div class="all-songs">
     <% @songs.each do |song| %>
         <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
@@ -13,5 +17,4 @@
     <% end %>
 
   </div>
-  <%= link_to "Add a new song", new_song_path, class: "btn btn-primary" %>
 </div>

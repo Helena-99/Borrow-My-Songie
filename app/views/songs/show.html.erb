@@ -23,7 +23,7 @@
 </p>
 <p>
 <strong>Price per day:</strong>
-<%= @song.price %>
+£<%= @song.price %>
 </p>
 <p>
 <strong>Owner:</strong>
@@ -35,13 +35,25 @@
 <div>
     <%= simple_form_for [@song,@booking] do |f| %>
     <div>
+<%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
+<%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
+<h4>Choose your rental dates</h2>
+<!-- Set datepicker controller on the whole div -->
+<div data-controller="datepicker">
+  <!-- Add dates target to grab the @dates from the songs controller and pass to the stimulus controller-->
+  <div data-datepicker-target="dates" data-dates="<%= @dates.to_json %>"></div>
+
+  <%= simple_form_for [@song,@booking] do |f| %>
+    <div data-controller="price-per-day" data-price-per-day-target="dates">
       <%= f.input :start_date,
       as: :string,
-      input_html: { data: { controller: "datepicker" } }
+      # <!-- Add datePicker target to the input -->
+      input_html: { data: { datepicker_target: "datePicker" } }
       %>
       <%= f.input :end_date,
       as: :string,
-      input_html: { data: { controller: "datepicker" } }
+      # <!-- Add datePicker target to the input -->
+      input_html: { data: { datepicker_target: "datePicker", price_per_day_target:"form", action: "change->price-per-day#calculate" } }
       %>
     </div>
       <%= link_to "Back to all songs", songs_path, :class => "btn btn-secondary"%>
@@ -49,5 +61,4 @@
 
     <% end %>
 </div>
-
 </div>
