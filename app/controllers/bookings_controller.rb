@@ -9,6 +9,7 @@ def create
   @song = Song.find(params[:song_id])
   @booking.song = @song
   @booking.user = current_user
+  # raise
 
   if @booking.save
     redirect_to song_path(@song), notice: "booking request received"

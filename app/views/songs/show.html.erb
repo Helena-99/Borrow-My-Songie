@@ -54,3 +54,15 @@ Still have to do this!!
 </div>
 
 </div>
+
+
+<div>
+  <% @bookings.each do |booking| %>
+    <%= booking.start_date %>
+    <%= booking.end_date %>
+  <% end %>
+</div>
+
+<div data-controller="datepicker">
+  <div data-datepicker-target="dates" data-dates-json="<%= @dates.to_json %>"></div>
+</div>
