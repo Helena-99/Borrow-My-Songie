@@ -24,7 +24,7 @@
             <div class="card-product-infos">
               <h2> <%= booking.song.title %> </h2>
               <p><%= booking.song.album %> - <%= booking.song.release_year %></p>
-              <p>Status: <%= booking.status %></p>
+              <p>Status: <%= booking.status.to_s.capitalize %></p>
             </div>
         <%# need to add avalibility %>
           <% end %>

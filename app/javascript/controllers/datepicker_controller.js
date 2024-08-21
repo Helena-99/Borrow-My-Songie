@@ -28,17 +28,9 @@ import flatpickr from "flatpickr";
 // // Connects to data-controller="datepicker"
 export default class extends Controller {
 //   static targets = ["dates"];
-<<<<<<< HEAD
-
   connect() {
     flatpickr(this.element);
   }
-
-=======
-  connect() {
-    flatpickr(this.element);
-  }
->>>>>>> master
 //   initFlatpickr() {
 //     const datesJson = this.datesTarget.getAttribute("data-dates-json");
 //     const datesArray = JSON.parse(datesJson);
@@ -46,10 +38,6 @@ export default class extends Controller {
 //       from: range[0],
 //       to: range[1]
 //     }));
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 //     flatpickr(this.element, {
 //         disable: disabledDates,
 //     });
