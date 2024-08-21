@@ -32,11 +32,13 @@
   <p>
   <%# <strong>Availability:</strong>
 
-  Still have to do this!! %>
-  </p>
-
-  <%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
-  <%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
+Still have to do this!!
+</p>
+<div>
+<%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
+<%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
+<div>
+  <%= simple_form_for [@song,@booking] do |f| %>
   <div>
     <%= simple_form_for [@song,@booking] do |f| %>
     <div>
