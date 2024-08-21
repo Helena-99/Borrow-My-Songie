@@ -5,41 +5,34 @@
     <%= image_tag @song.image_url%>
   <% end %>
 
-  <p>
-  <strong>Title:</strong>
-  <%= @song.title %>
-  </p>
-  <p>
-  <strong>Artist:</strong>
-  <%= @song.artist %>
-  </p>
-  <p>
-  <strong>Album:</strong>
-  <%= @song.album %>
-  </p>
-  <p>
-  <strong>Release year:</strong>
-  <%= @song.release_year %>
-  </p>
-  <p>
-  <strong>Price per day:</strong>
-  <%= @song.price %>
-  </p>
-  <p>
-  <strong>Owner:</strong>
-  <%= @song.user.first_name %> <%= @song.user.last_name %></p>
-  </p>
-  <p>
-  <%# <strong>Availability:</strong>
-
-Still have to do this!!
+<p>
+<strong>Title:</strong>
+<%= @song.title %>
 </p>
-<div>
+<p>
+<strong>Artist:</strong>
+<%= @song.artist %>
+</p>
+<p>
+<strong>Album:</strong>
+<%= @song.album %>
+</p>
+<p>
+<strong>Release year:</strong>
+<%= @song.release_year %>
+</p>
+<p>
+<strong>Price per day:</strong>
+<%= @song.price %>
+</p>
+<p>
+<strong>Owner:</strong>
+<%= @song.user.first_name %> <%= @song.user.last_name %></p>
+</p>
+
 <%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
 <%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
 <div>
-  <%= simple_form_for [@song,@booking] do |f| %>
-  <div>
     <%= simple_form_for [@song,@booking] do |f| %>
     <div>
       <%= f.input :start_date,
@@ -53,6 +46,6 @@ Still have to do this!!
     </div>
       <%= f.button :submit, "Rent", class: "btn btn-primary" %>
     <% end %>
-  </div>
+</div>
 
 </div>
