@@ -19,6 +19,13 @@ ines = User.create!(
   last_name: "Perez"
 )
 
+rebecca = User.create!(
+  email: "rebecca@rebecca.com",
+  password: "123456",
+  first_name: "Rebecca",
+  last_name: "O'Neill"
+)
+
 IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg", "https://www.udiscovermusic.com/wp-content/uploads/2019/03/Queen-II-album-cover-820.jpg",
 "https://www.billboard.com/wp-content/uploads/2022/06/beyonce-I-Am...-Sasha-Fierce-album-art-billboard-1240.jpg?w=600", "https://upload.wikimedia.org/wikipedia/en/0/03/Listen_The_Kooks_cover.png",
 "https://vinyl-records.nl/prog-rock/david-bowie/aladdin-italy/aladdin-sane-10large.jpg", "https://m.media-amazon.com/images/I/71eXc8kVcQL._AC_UF894,1000_QL80_.jpg", "https://www.udiscovermusic.com/wp-content/uploads/2019/06/The-Killers-Hot-Fuss-album-cover-820.jpg",
@@ -26,10 +33,8 @@ IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.j
 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUP1MSr4r8a9FyoNnWVlUIucs54RF7HGryIA&s", "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG",
 "https://m.media-amazon.com/images/I/71Y55FU5VGL._UF894,1000_QL80_.jpg", "https://audioxide.com/api/images/album-artwork/the-college-dropout-kanye-west-medium-square.jpg"
 ]
-10.times do
-  image_url = IMAGES.sample
-  image = URI.open(image_url)
 
+10.times do
   song_title = Faker::Music::RockBand.unique.song
   song = Song.new!(
     title: song_title,           # Generates a random song title
@@ -38,25 +43,65 @@ IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.j
     album: Faker::Music.album,                    # Generates a random album name
     price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
     user: oliver,
-    available: [ "true", "false" ].sample,
+    available: [ "true", "false" ].sample
   )
-  song.photo.attach(io: image, filename: "#{song_title}.jpg", content_type: 'image/jpeg')
+  image_url = IMAGES.sample
+  file = URI.open(image_url)
+  song.photo.attach(io: file, filename: "#{song_title}.png", content_type: "image/png")
   song.save
 end
 
 puts '10 songs for oliver have been created!'
 
 20.times do
-  Song.create!(
-    title: Faker::Music::RockBand.unique.song,           # Generates a random song title
+  song_title = Faker::Music::RockBand.unique.song
+  song = Song.new!(
+    title: song_title,           # Generates a random song title
     release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
     artist: Faker::Music.band,
     album: Faker::Music.album,                    # Generates a random album name
     price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
     user: ines,
-    available: [ "true", "false" ].sample,
-    image_url: IMAGES.sample
+    available: [ "true", "false" ].sample
   )
+  image_url = IMAGES.sample
+  file = URI.open(image_url)
+  song.photo.attach(io: file, filename: "#{song_title}.png", content_type: "image/png")
+  song.save
 end
 
-puts '20 songs for ines have been created!'
+puts '5 songs for ines have been created!'
+
+5.times do
+  song_title = Faker::Music::RockBand.unique.song
+  song = Song.new!(
+    title: song_title,           # Generates a random song title
+    release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
+    artist: Faker::Music.band,
+    album: Faker::Music.album,                    # Generates a random album name
+    price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
+    user: rebeccas,
+    available: [ "true", "false" ].sample
+  )
+  image_url = IMAGES.sample
+  file = URI.open(image_url)
+  song.photo.attach(io: file, filename: "#{song_title}.png", content_type: "image/png")
+  song.save
+end
+
+puts '5 songs for rebecca have been created!'
+
+# 5.times do
+#   Song.create!(
+#     title: Faker::Music::RockBand.unique.song,           # Generates a random song title
+#     release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
+#     artist: Faker::Music.band,
+#     album: Faker::Music.album,                    # Generates a random album name
+#     price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
+#     user: ines,
+#     available: [ "true", "false" ].sample,
+#     image_url: IMAGES.sample
+#   )
+# end
+
+# puts '5 songs for ines have been created!'

@@ -6,7 +6,7 @@
     <%= f.input :album, input_html: {data: {action: "change->image-search#searchImage"}} %>
     <%= f.input :release_year, label: 'Year' %>
     <%= f.input :price, label: 'Price per day'%>
-    <%= f.input :image_url %>
+    <%= f.input :photo, as: :file %>
   </div>
     <%= f.button :submit, "Add song", class: "btn btn-secondary" %>
   <% end %>
