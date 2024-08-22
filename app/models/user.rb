@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :songs
   has_many :bookings
+
+  def inbound_bookings
+    Booking.joins(:song).where('songs.user_id = ?', self.id)
+  end
 end

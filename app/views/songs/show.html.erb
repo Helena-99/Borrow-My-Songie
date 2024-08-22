@@ -21,9 +21,14 @@
     </div>
   </div>
 
-<%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
-<%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
 
+<div data-controller = "toggle">
+<%= link_to "Back to all songs", songs_path, :class => "btn btn-primary", data: { toggle_target: "backButton" }%>
+<%= link_to "Book this song",  "#", :class => "btn btn-primary", data: { action: "click->toggle#fire", toggle_target: "rentButton"}%>
+
+
+<!-- Set datepicker controller on the whole div -->
+<div data-controller="datepicker" data-toggle-target="togglableElement" class="d-none" >
 <h4>Choose your rental dates</h2>
 <!-- Set datepicker controller on the whole div -->
   <div data-controller="datepicker">
@@ -43,8 +48,10 @@
         %>
       </div>
         <%= link_to "Back to all songs", songs_path, :class => "btn btn-secondary"%>
-        <%= f.button :submit, "Rent", class: "btn btn-primary" %>
-
+        <%= f.button :submit, "Request booking", class: "btn btn-primary" %>
       <% end %>
+
+      </div>
+    </div>
   </div>
 </div>

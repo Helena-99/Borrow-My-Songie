@@ -1,23 +1,32 @@
 <div class="container mb-3">
 <h1> My dashboard</h1>
-    <h4> My pending requests </h2>
-    <% @my_songs.each do |song| %>
-      <% song.bookings.each do |booking|%>
-        <% if booking.status == 'pending' %>
-          <div class="booking-alert mb-3 d-flex justify-content-between">
-            <p>
-            <%= booking.user.first_name %> has requested to book "<%= booking.song.title %>" from <%= booking.start_date %> to <%= booking.end_date %>
+
+<div class="bg-white mb-3 rounded shadow px-3 py-2">
+    <h4>My pending requests</h4>
+    <% pending_inbound_bookings = current_user.inbound_bookings.where(status: 'pending') %>
+    <% if !pending_inbound_bookings.empty? %>
+      <% pending_inbound_bookings.each do |booking| %>
+          <div class="booking-alert d-flex align-items-center mb-1">
+            <p class="flex-grow-1">
+            <%= booking.user.first_name %> has requested to book "<%= booking.song.title %>"
+            from <%= booking.start_date %> to <%= booking.end_date %>
             </p>
+            <div class='d-flex'>
               <%= form_with url: "/bookings/#{booking.id}/approve", method: :patch do |form|%>
-                <%= form.submit "approve", class: 'btn'%>
+                <%= form.submit "Approve", class: 'btn'%>
               <% end %>
               <%= form_with url: "/bookings/#{booking.id}/decline", method: :patch do |form|%>
-                <%= form.submit "decline", class: 'btn'%>
+                <%= form.submit "Decline", class: 'btn'%>
               <% end %>
+            </div>
           </div>
       <% end %>
+    <% else %>
+      <div class="font-weight-light text-muted">
+        No bookings for review
+      </div>
     <% end %>
-  <% end %>
+</div>
 
   <div class="row">
     <div class="col">
@@ -25,34 +34,29 @@
         <h2> My songs </h2>
         <%= link_to "Upload a new song", new_song_path, class: "btn btn-primary height:25%" %>
       </div>
-      <h4>Available today</h4>
         <% @my_songs.each do |song| %>
         <% if song.available == true %>
           <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
             <%= cl_image_tag song.photo.key %>
             <div class="card-product-infos">
               <h2> <%= song.title %> </h2>
-              <p><%= song.album %> - <%= song.release_year %></p>
-              <p>Status: <%= song.available ? "Available" : "Booked" %></p>
+              <p><%= song.album %> - <i><%= song.release_year %></i></p>
+              <p> <%= song.available ? "Available" : "Booked" %></p>
             </div>
           <% end %>
           <% end %>
         <% end %>
 
-        <h4>Booked today</h4>
         <% @my_songs.each do |song| %>
-        <% if song.available == false %>
-          <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
-            <%= cl_image_tag song.photo.key %>
-            <div class="card-product-infos">
-              <h2> <%= song.title %> </h2>
-              <p><%= song.album %> - <%= song.release_year %></p>
-              <p>Status: <%= song.available ? "Available" : "Booked" %></p>
-            </div>
-          <% end %>
-
-
-        <%# need to add avalibility %>
+          <% if song.available == false %>
+            <%= link_to song_path(song), class: 'card-product mb-3 d-flex bg-light' do %>
+              <%= cl_image_tag song.photo.key %>
+              <div class="card-product-infos">
+                <h2> <%= song.title %> </h2>
+                <p><%= song.album %> -  <i><%= song.release_year %></i></p>
+                <p> <%= song.available ? "Available" : "Booked" %></p>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
     <%= link_to "Add a new song", new_song_path, class: "btn btn-primary" %>
@@ -70,16 +74,16 @@
             <%= cl_image_tag booking.song.photo.key %>
           <div class="card-product-infos">
               <h2> <%= booking.song.title %> </h2>
-              <p><%= booking.song.album %> - <%= booking.song.release_year %></p>
+              <p><%= booking.song.album %> - <i><%= booking.song.release_year %></i></p>
+              <p><%= booking.start_date %> to <%= booking.end_date %></p>
               <% if booking.status === "pending" %>
-                  <p>Status: Pending</p> <%# change this when booking.status is coded  %>
+                  <p class="bg-warning-subtle rounded-pill text-center" style="width: 80px">Pending</p> <%# change this when booking.status is coded  %>
               <% elsif booking.status === "accepted" %>
-                <p>Status: Accepted</p>
+                <p class="bg-success-subtle rounded-pill text-center" style="width: 80px">Accepted</p>
               <% else %>
-                <p>Status: Declined</p>
+                <p class="bg-secondary-subtle rounded-pill text-center" style="width: 80px">Declined</p>
               <% end %>
             </div>
-        <%# need to add avalibility %>
           <% end %>
         <% end %>
       </div>
