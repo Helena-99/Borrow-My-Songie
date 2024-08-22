@@ -30,7 +30,10 @@
 
 <div data-controller = "toggle">
 <%= link_to "Back to all songs", songs_path, :class => "btn btn-primary", data: { toggle_target: "backButton" }%>
-<%= link_to "Book this song",  "#", :class => "btn btn-primary", data: { action: "click->toggle#fire", toggle_target: "rentButton"}%>
+<% if @song.user_id != current_user.id %>
+  <%= link_to "Book this song",  "#", :class => "btn btn-primary", data: { action: "click->toggle#fire", toggle_target: "rentButton"}%>
+
+<% end %>
 
 
 <!-- Set datepicker controller on the whole div -->
@@ -41,16 +44,16 @@
     <!-- Add dates target to grab the @dates from the songs controller and pass to the stimulus controller-->
     <div data-datepicker-target="dates" data-dates="<%= @dates.to_json %>"></div>
     <%= simple_form_for [@song,@booking] do |f| %>
-      <div data-controller="price-per-day" data-price-per-day-target="dates">
+      <div>
         <%= f.input :start_date,
         as: :string,
         # <!-- Add datePicker target to the input -->
-        input_html: { data: { datepicker_target: "datePicker" } }
+        input_html: { data: { datepicker_target: "datePicker", action: "change->datepicker#initFlatpickr"} }
         %>
         <%= f.input :end_date,
         as: :string,
         # <!-- Add datePicker target to the input -->
-        input_html: { data: { datepicker_target: "datePicker", price_per_day_target:"form", action: "change->price-per-day#calculate" } }
+        input_html: { data: { datepicker_target: "datePicker" } }
         %>
       </div>
         <%= link_to "Back to all songs", songs_path, :class => "btn btn-secondary"%>
