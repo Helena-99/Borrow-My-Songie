@@ -58,4 +58,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 16px;
+
+.card-new-song {
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  position: relative;
+  transition: opacity .3s ease;
 }
