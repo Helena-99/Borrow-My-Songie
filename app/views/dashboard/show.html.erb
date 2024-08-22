@@ -1,22 +1,23 @@
 <div class="container mb-3">
 <h1> My dashboard</h1>
-
-<div class="bg-white mb-3 rounded shadow px-3 py-2">
-    <h4>My pending requests</h4>
+<div class="row " >
+<%# <div class="bg-white mb-3 rounded shadow px-3 py-2"> %>
+    <h2>My pending requests</h2>
+    <div class = "card-new-song">
     <% pending_inbound_bookings = current_user.inbound_bookings.where(status: 'pending') %>
     <% if !pending_inbound_bookings.empty? %>
       <% pending_inbound_bookings.each do |booking| %>
-          <div class="booking-alert d-flex align-items-center mb-1">
+          <%# <div class="booking-alert d-flex align-items-center mb-1"> %>
+          <div class="d-flex my-1">
             <p class="flex-grow-1">
-            <%= booking.user.first_name %> has requested to book "<%= booking.song.title %>"
-            from <%= booking.start_date %> to <%= booking.end_date %>
+            <%= booking.user.first_name %> has requested to book "<%= booking.song.title %>" from <%= booking.start_date %> to <%= booking.end_date %>
             </p>
             <div class='d-flex'>
               <%= form_with url: "/bookings/#{booking.id}/approve", method: :patch do |form|%>
-                <%= form.submit "Approve", class: 'btn'%>
+                <%= form.submit "Approve", class: 'btn btn-tertiary mx-2'%>
               <% end %>
               <%= form_with url: "/bookings/#{booking.id}/decline", method: :patch do |form|%>
-                <%= form.submit "Decline", class: 'btn'%>
+                <%= form.submit "Decline", class: 'btn btn-tertiary mx-2'%>
               <% end %>
             </div>
           </div>
@@ -26,6 +27,7 @@
         No bookings for review
       </div>
     <% end %>
+    </div>
 </div>
 
   <div class="row">
@@ -59,7 +61,7 @@
             <% end %>
           <% end %>
         <% end %>
-    <%= link_to "Add a new song", new_song_path, class: "btn btn-primary" %>
+    <%= link_to "Upload a new song", new_song_path, class: "btn btn-primary" %>
     </div>
 
 
