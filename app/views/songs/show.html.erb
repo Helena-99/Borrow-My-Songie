@@ -1,10 +1,16 @@
 
 <div class = "container mx-auto my-4">
   <div class ="card-tune">
-    <div class="card-tune-infos">
-      <% if @song.photo.key? %>
-        <%= cl_image_tag @song.photo.key, height: 400, width: 400, crop: :fill %>
-      <% end %>
+    <div class="card-tune-infos" data-controller='player'>
+      <div data-player-target='button' data-action='click->player#toggle' class='play-button'>
+        <i data-player-target='playIcon' class="fa-solid fa-play fa-2xl icon"></i>
+        <i data-player-target='playingIcon' class="fa-solid fa-spinner fa-spin icon fa-2xl d-none"></i>
+        <div class="layer"></div>
+        <% if @song.photo.key? %>
+          <%= cl_image_tag @song.photo.key, height: 400, width: 400, crop: :fill %>
+        <% end %>
+      </div>
+      <div data-player-target='iframeDiv' class='d-none'></div>
       </div>
       <div class="row">
         <h2 style="margin-top: 20px; margin-bottom: 40px;"><%= @song.title %> - <%= @song.release_year %> </h2>
@@ -24,7 +30,10 @@
 
 <div data-controller = "toggle">
 <%= link_to "Back to all songs", songs_path, :class => "btn btn-secondary", data: { toggle_target: "backButton" }%>
-<%= link_to "Book this song",  "#", :class => "btn btn-primary", data: { action: "click->toggle#fire", toggle_target: "rentButton"}%>
+<% if @song.user_id != current_user.id %>
+  <%= link_to "Book this song",  "#", :class => "btn btn-primary", data: { action: "click->toggle#fire", toggle_target: "rentButton"}%>
+
+<% end %>
 
 
 <!-- Set datepicker controller on the whole div -->
@@ -35,16 +44,16 @@
     <!-- Add dates target to grab the @dates from the songs controller and pass to the stimulus controller-->
     <div data-datepicker-target="dates" data-dates="<%= @dates.to_json %>"></div>
     <%= simple_form_for [@song,@booking] do |f| %>
-      <div data-controller="price-per-day" data-price-per-day-target="dates">
+      <div>
         <%= f.input :start_date,
         as: :string,
         # <!-- Add datePicker target to the input -->
-        input_html: { data: { datepicker_target: "datePicker" } }
+        input_html: { data: { datepicker_target: "datePicker", action: "change->datepicker#initFlatpickr"} }
         %>
         <%= f.input :end_date,
         as: :string,
         # <!-- Add datePicker target to the input -->
-        input_html: { data: { datepicker_target: "datePicker", price_per_day_target:"form", action: "change->price-per-day#calculate" } }
+        input_html: { data: { datepicker_target: "datePicker" } }
         %>
       </div>
         <%= link_to "Back to all songs", songs_path, :class => "btn btn-secondary"%>
