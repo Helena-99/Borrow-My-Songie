@@ -6,7 +6,7 @@
     <% pending_inbound_bookings = current_user.inbound_bookings.where(status: 'pending') %>
     <% if !pending_inbound_bookings.empty? %>
       <% pending_inbound_bookings.each do |booking| %>
-          <div class="booking-alert d-flex align-items-center mb-2">
+          <div class="booking-alert d-flex align-items-center mb-1">
             <p class="flex-grow-1">
             <%= booking.user.first_name %> has requested to book "<%= booking.song.title %>"
             from <%= booking.start_date %> to <%= booking.end_date %>
