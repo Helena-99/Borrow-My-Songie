@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
-
+  patch '/bookings/:id/approve', to: 'bookings#approve'
+  patch '/bookings/:id/decline', to: 'bookings#decline'
 end
