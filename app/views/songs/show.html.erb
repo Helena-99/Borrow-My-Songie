@@ -22,7 +22,7 @@
 <%= @song.release_year %>
 </p>
 <p>
-<strong>Price per day:</strong> 
+<strong>Price per day:</strong>
 £<%= @song.price %>
 </p>
 <p>
@@ -31,13 +31,15 @@
 </p>
 
 
-<%# <%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
-<div>
-<%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
-<%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
-<h4>Choose your rental dates</h2>
+
+<div data-controller = "toggle">
+<%= link_to "Back to all songs", songs_path, :class => "btn btn-primary", data: { toggle_target: "backButton" }%>
+<%= link_to "Rent this song",  "#", :class => "btn btn-primary", data: { action: "click->toggle#fire", toggle_target: "rentButton"}%>
+
+
 <!-- Set datepicker controller on the whole div -->
-<div data-controller="datepicker">
+<div data-controller="datepicker" data-toggle-target="togglableElement" class="d-none" >
+<h4>Choose your rental dates</h2>
   <!-- Add dates target to grab the @dates from the songs controller and pass to the stimulus controller-->
   <div data-datepicker-target="dates" data-dates="<%= @dates.to_json %>"></div>
 

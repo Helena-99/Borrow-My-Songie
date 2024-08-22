@@ -12,10 +12,11 @@ def create
   # raise
 
   if @booking.save
-    redirect_to song_path(@song), notice: "booking request received"
+    redirect_to dashboard_path, notice: "booking request received"
   else
     render 'songs/show', status: :unprocessable_entity
   end
+
 end
 
 
