@@ -1,13 +1,11 @@
 <div class="container">
-<%# the form %>
-<%# end of form %>
   <div class= "d-flex justify-content-between align-items-center">
     <h1>All songs</h1>
     <%= link_to "Upload a new song", new_song_path, class: "btn btn-primary height:25%" %>
   </div>
  <div class="songs-container p-2">
   <div class="row search">
-    <div class="col-sm-8 my-3">
+    <div class="col-sm-12 my-3">
       <%= form_with url: songs_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
               params[:query],
