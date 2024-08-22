@@ -1,19 +1,19 @@
 
 <div class = "container mx-auto my-4">
   <div class ="card-tune">
-    <div>
+    <div class="card-tune-infos">
       <% if @song.photo.key? %>
         <%= cl_image_tag @song.photo.key, height: 400, width: 400, crop: :fill %>
       <% end %>
       </div>
-      <div class="card-tune-infos">
+      <div class="row">
         <h2><%= @song.title %> </h2>
-        <div>
+        <div class="col">
           <p><strong>Artist:</strong> <%= @song.artist %></p>
           <p> <strong>Album:</strong> <%= @song.album %> </p>
           <p><strong>Release year:</strong> <%= @song.release_year %></p>
         </div>
-        <div>
+        <div class="col">
         <p><strong>Price per day:</strong> £<%= @song.price %></p>
         <p><strong>Owner:</strong> <%= @song.user.first_name %> <%= @song.user.last_name %></p></p>
         </div>

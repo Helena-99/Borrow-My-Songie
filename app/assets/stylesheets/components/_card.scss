@@ -54,31 +54,38 @@
   padding: 16px;
 }
 
-<<<<<<< HEAD
 .card-tune {
   text-decoration: none;
   color: inherit;
   overflow: hidden;
   height: 100%;
-=======
-.card-new-song {
-  text-decoration: none;
-  color: inherit;
-  overflow: hidden;
->>>>>>> master
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 16px;
   position: relative;
   transition: opacity .3s ease;
-<<<<<<< HEAD
   display: flex;
   margin-bottom: 40px;
 }
 
-.card-tune-infos {
-  margin-top: 40px;
-  margin-left: 40px;
-=======
->>>>>>> master
+.row{
+  margin: auto;
+  margin-left: 30px;
+  padding: auto;
+}
+
+.row h2 {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.card-new-song {
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  position: relative;
+  transition: opacity .3s ease;
 }
