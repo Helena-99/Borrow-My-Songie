@@ -74,10 +74,6 @@
   padding: auto;
 }
 
-.row h2 {
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
 
 .all-songs {
   display: grid;
@@ -88,6 +84,16 @@
 .card-new-song {
   text-decoration: none;
   color: inherit;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 16px;
+  position: relative;
+  transition: opacity .3s ease;
+}
+
+.card-request {
+  text-decoration: none;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
