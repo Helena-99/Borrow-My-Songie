@@ -35,9 +35,9 @@ IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.j
 ]
 
 10.times do
-
+  song_title = Faker::Music::RockBand.unique.song
   song = Song.new(
-    title: Faker::Music::RockBand.unique.song,           # Generates a random song title
+    title: song_title,           # Generates a random song title
     release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
     artist: Faker::Music.band,
     album: Faker::Music.album,                    # Generates a random album name
@@ -47,16 +47,16 @@ IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.j
   )
   image_url = IMAGES.sample
   file = URI.open(image_url)
-  song.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-  song.save
+  song.photo.attach(io: file, filename: "#{song_title}.png", content_type: "image/png")
+  song.save!
 end
 
 puts '10 songs for oliver have been created!'
 
 20.times do
-
+  song_title = Faker::Music::RockBand.unique.song
   song = Song.new(
-    title: Faker::Music::RockBand.unique.song,           # Generates a random song title
+    title: song_title,           # Generates a random song title
     release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
     artist: Faker::Music.band,
     album: Faker::Music.album,                    # Generates a random album name
@@ -66,16 +66,16 @@ puts '10 songs for oliver have been created!'
   )
   image_url = IMAGES.sample
   file = URI.open(image_url)
-  song.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-  song.save
+  song.photo.attach(io: file, filename: "#{song_title}.png", content_type: "image/png")
+  song.save!
 end
 
 puts '5 songs for ines have been created!'
 
 5.times do
-
+  song_title = Faker::Music::RockBand.unique.song
   song = Song.new(
-    title: Faker::Music::RockBand.unique.song,           # Generates a random song title
+    title: song_title,           # Generates a random song title
     release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
     artist: Faker::Music.band,
     album: Faker::Music.album,                    # Generates a random album name
@@ -85,8 +85,8 @@ puts '5 songs for ines have been created!'
   )
   image_url = IMAGES.sample
   file = URI.open(image_url)
-  song.photo.attach(io: file, filename: "nes.png", content_type: "image/png")
-  song.save
+  song.photo.attach(io: file, filename: "#{song_title}.png", content_type: "image/png")
+  song.save!
 end
 
 puts '5 songs for rebecca have been created!'
