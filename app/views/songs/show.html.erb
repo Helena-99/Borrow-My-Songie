@@ -1,5 +1,25 @@
 
-<div class = "container m-4">
+<div class = "container mx-auto my-4">
+  <div class ="card-tune">
+    <div class="card-tune-infos">
+      <% if @song.photo.key? %>
+        <%= cl_image_tag @song.photo.key, height: 400, width: 400, crop: :fill %>
+      <% end %>
+      </div>
+      <div class="row">
+        <h2><%= @song.title %> - <%= @song.release_year %> </h2>
+        <div class="col">
+          <p><strong>Artist:</strong> <%= @song.artist %></p>
+          <p> <strong>Album:</strong> <%= @song.album %> </p>
+        </div>
+        <div class="col">
+        <p><strong>Price per day:</strong> £<%= @song.price %></p>
+        <p><strong>Owner:</strong> <%= @song.user.first_name %> <%= @song.user.last_name %></p></p>
+        </div>
+        <div> <strong>Blur:</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+    </div>
+  </div>
 
   <% if @song.photo.key? %>
     <%= cl_image_tag @song.photo.key, height: 400, width: 300, crop: :fill %>
@@ -43,22 +63,6 @@
   <!-- Add dates target to grab the @dates from the songs controller and pass to the stimulus controller-->
   <div data-datepicker-target="dates" data-dates="<%= @dates.to_json %>"></div>
 
-  <%= simple_form_for [@song,@booking] do |f| %>
-    <div data-controller="price-per-day" data-price-per-day-target="dates">
-      <%= f.input :start_date,
-      as: :string,
-      # <!-- Add datePicker target to the input -->
-      input_html: { data: { datepicker_target: "datePicker" } }
-      %>
-      <%= f.input :end_date,
-      as: :string,
-      # <!-- Add datePicker target to the input -->
-      input_html: { data: { datepicker_target: "datePicker", price_per_day_target:"form", action: "change->price-per-day#calculate" } }
-      %>
-    </div>
-      <%= link_to "Back to all songs", songs_path, :class => "btn btn-secondary"%>
-      <%= f.button :submit, "Rent", class: "btn btn-primary" %>
-
-    <% end %>
-</div>
+      <% end %>
+  </div>
 </div>

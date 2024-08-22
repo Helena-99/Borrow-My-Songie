@@ -1,6 +1,12 @@
 <div class="container">
 <%# the form %>
-  <div class="row justify-content-center">
+<%# end of form %>
+  <div class= "d-flex justify-content-between align-items-center">
+    <h1>All songs</h1>
+    <%= link_to "Upload a new song", new_song_path, class: "btn btn-primary height:25%" %>
+  </div>
+ <div class="songs-container p-2">
+  <div class="row search">
     <div class="col-sm-8 my-3">
       <%= form_with url: songs_path, method: :get, class: "d-flex" do %>
         <%= text_field_tag :query,
@@ -8,27 +14,23 @@
               class: "form-control",
               placeholder: "Type a keyword"
           %>
-        <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+        <%= submit_tag "Search", name: "", class: "btn btn-secondary" %>
       <% end %>
       </div>
   </div>
-<%# end of form %>
-  <div class= "d-flex justify-content-between align-items-center">
-    <h1>All songs</h1>
-    <%= link_to "Upload a new song", new_song_path, class: "btn btn-primary height:25%" %>
-  </div>
-
   <div class="all-songs">
     <% @songs.each do |song| %>
-        <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
+        <%= link_to song_path(song), class: 'card-product d-flex mb-2 align-items-start' do %>
             <%= cl_image_tag song.photo.key %>
             <div class="card-product-infos">
                 <h2><%= song.title %></h2>
-                <p><%= song.artist %></p>
-                <p>£<%= song.price %> per day</p>
+                <p><%= song.artist %> - <i><%= song.release_year %></i></p>
+                <p>Yours for <strong>£<%= song.price %> </strong> per day</p>
             </div>
         <% end %>
     <% end %>
-
   </div>
+
+ </div>
+
 </div>
