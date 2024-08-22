@@ -7,16 +7,17 @@
       <% end %>
       </div>
       <div class="row">
-        <h2><%= @song.title %> </h2>
+        <h2><%= @song.title %> - <%= @song.release_year %> </h2>
         <div class="col">
           <p><strong>Artist:</strong> <%= @song.artist %></p>
           <p> <strong>Album:</strong> <%= @song.album %> </p>
-          <p><strong>Release year:</strong> <%= @song.release_year %></p>
         </div>
         <div class="col">
         <p><strong>Price per day:</strong> £<%= @song.price %></p>
         <p><strong>Owner:</strong> <%= @song.user.first_name %> <%= @song.user.last_name %></p></p>
         </div>
+        <div> <strong>Blur:</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
     </div>
   </div>
 
