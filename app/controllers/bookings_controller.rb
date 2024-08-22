@@ -18,6 +18,19 @@ def create
   end
 end
 
+def approve
+  booking = Booking.find(params[:id])
+  booking.status = 'accepted'
+  booking.save
+  redirect_to dashboard_path, notice: 'Booking accepted'
+end
+
+def decline
+  booking = Booking.find(params[:id])
+  booking.status = 'declined'
+  booking.save
+  redirect_to dashboard_path, notice: 'Booking declined'
+end
 
 private
 

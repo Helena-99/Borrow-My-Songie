@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
     @my_songs = Song.where(user_id: @user.id)
     # Incoming bookings on my songs [done in view]
 
+
     # MY PURCHASES
     @my_purchases = Booking.includes(:song).where(user_id: @user.id)
 
