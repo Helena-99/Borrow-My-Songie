@@ -1,8 +1,8 @@
 
 <div class = "container m-4">
 
-  <% if @song.image_url.present? %>
-    <%= image_tag @song.image_url%>
+  <% if @song.photo.key? %>
+    <%= cl_image_tag @song.photo.key, height: 400, width: 300, crop: :fill %>
   <% end %>
 
 <p>
@@ -30,6 +30,11 @@
 <%= @song.user.first_name %> <%= @song.user.last_name %></p>
 </p>
 
+
+<%# <%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
+<div>
+    <%= simple_form_for [@song,@booking] do |f| %>
+    <div>
 <%= link_to "Back to all songs", songs_path, :class => "btn btn-primary"%>
 <%= link_to "Rent this song",  "#", :class => "btn btn-primary"%>
 <h4>Choose your rental dates</h2>
@@ -51,7 +56,9 @@
       input_html: { data: { datepicker_target: "datePicker", price_per_day_target:"form", action: "change->price-per-day#calculate" } }
       %>
     </div>
-    <%= f.button :submit, "Rent", class: "btn btn-primary" %>
-  <% end %>
+      <%= link_to "Back to all songs", songs_path, :class => "btn btn-secondary"%>
+      <%= f.button :submit, "Rent", class: "btn btn-primary" %>
+
+    <% end %>
 </div>
 </div>

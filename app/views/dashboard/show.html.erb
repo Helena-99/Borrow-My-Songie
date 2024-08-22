@@ -9,7 +9,7 @@
 
         <% @my_songs.each do |song| %>
           <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
-            <img src="<%= song.image_url %>" />
+            <%= cl_image_tag song.photo.key %>
             <div class="card-product-infos">
               <h2> <%= song.title %> </h2>
               <p><%= song.album %> - <%= song.release_year %></p>
@@ -30,7 +30,7 @@
       </div>
         <% @my_purchases.each do |booking| %>
           <%= link_to song_path(booking.song), class: 'card-product mb-3 d-flex' do %>
-            <img src="<%= booking.song.image_url %>" />
+            <%= cl_image_tag booking.song.photo.key %>
           <div class="card-product-infos">
               <h2> <%= booking.song.title %> </h2>
               <p><%= booking.song.album %> - <%= booking.song.release_year %></p>
