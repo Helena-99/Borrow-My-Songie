@@ -1,4 +1,5 @@
 require 'faker'
+require 'open-uri'
 
 Booking.destroy_all
 Song.destroy_all
@@ -26,16 +27,21 @@ IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.j
 "https://m.media-amazon.com/images/I/71Y55FU5VGL._UF894,1000_QL80_.jpg", "https://audioxide.com/api/images/album-artwork/the-college-dropout-kanye-west-medium-square.jpg"
 ]
 10.times do
-  Song.create!(
-    title: Faker::Music::RockBand.unique.song,           # Generates a random song title
+  image_url = IMAGES.sample
+  image = URI.open(image_url)
+
+  song_title = Faker::Music::RockBand.unique.song
+  song = Song.new!(
+    title: song_title,           # Generates a random song title
     release_year: Faker::Number.between(from: 1950, to: 2024), # Random year between 1950 and 2024
     artist: Faker::Music.band,
     album: Faker::Music.album,                    # Generates a random album name
     price: Faker::Number.between(from: 0, to: 10), # Generates a random price between 0 and 10
     user: oliver,
     available: [ "true", "false" ].sample,
-    image_url: IMAGES.sample
   )
+  song.photo.attach(io: image, filename: "#{song_title}.jpg", content_type: 'image/jpeg')
+  song.save
 end
 
 puts '10 songs for oliver have been created!'
