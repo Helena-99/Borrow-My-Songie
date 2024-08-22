@@ -2,13 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 import flatpickr from "flatpickr";
 // // Connects to data-controller="datepicker"
 export default class extends Controller {
-  static targets = ["dates", "datePicker"];
+  static targets = ["dates", "datePicker", "startDate"];
 
   connect() {
       this.initFlatpickr();
   }
 
   initFlatpickr() {
+    // console.log(event.element)
     // Handles errors in case there are no bookings on the song and the @dates is empty
     const dateData = this.datesTarget.dataset.dates;
     if (!dateData) {
@@ -29,7 +30,10 @@ export default class extends Controller {
     this.datePickerTargets.forEach(input => {
       flatpickr(input, {
         disable: disabledDates,
-        minDate: "today"
+        minDate: "today",
+        altInput: true,
+        altFormat: "F j, Y",
+        dateFormat: "d-m-Y",
       });
     });
   }
