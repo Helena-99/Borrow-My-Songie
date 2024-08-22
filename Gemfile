@@ -51,6 +51,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem 'faker'
 gem "cloudinary"
+gem "pg_search"
 
 # devise
 gem "devise"

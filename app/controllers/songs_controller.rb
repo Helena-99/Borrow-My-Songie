@@ -1,7 +1,12 @@
 class SongsController < ApplicationController
   def index
     @user = current_user
-    @songs = Song.where.not(user_id: @user.id)
+      if params[:query].present?
+        @songs = Song.where("title ILIKE ? OR album ILIKE ? OR artist ILIKE ?", "%#{params[:query]}%", "%#{params[:query]}%", "%#{params[:query]}%")
+                     .where.not(user_id: @user.id)
+      else
+        @songs = Song.where.not(user_id: @user.id)
+      end
   end
 
   def new
