@@ -42,7 +42,7 @@
               <div class="card-product-infos">
                 <h2> <%= song.title %> </h2>
                 <p><%= song.album %> - <i><%= song.release_year %></i></p>
-                <p> <%= song.available ? "Available" : "Booked" %></p>
+                <p class="bg-success-subtle rounded-pill text-center" style="width: 80px"> <%= song.available ? "Available" : "Booked" %> </p>
               </div>
             <% end %>
           <% end %>
@@ -55,12 +55,11 @@
               <div class="card-product-infos">
                 <h2> <%= song.title %> </h2>
                 <p><%= song.album %> -  <i><%= song.release_year %></i></p>
-                <p> <%= song.available ? "Available" : "Booked" %></p>
+                <p class="bg-warning-subtle rounded-pill text-center" style="width: 80px"> <%= song.available ? "Available" : "Booked" %></p>
               </div>
             <% end %>
           <% end %>
         <% end %>
-    <%= link_to "Add a new song", new_song_path, class: "btn btn-primary" %>
     </div>
 
 
@@ -68,15 +67,17 @@
     <div class="col">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h2> My purchases </h2>
-        <%= link_to "Browse all songs", songs_path, class: "btn btn-secondary height:25%" %>
+        <%# <%= link_to "Browse all songs", songs_path, class: "btn btn-secondary height:25%" %>
       </div>
         <%# Empty state %>
         <% if current_user.bookings.empty?  %>
-          <div class="d-flex align-items-center justify-content-center">
-            <h3 style = "margin: auto; padding-top: 50px;">Your bookings will show here</h3>
-
+          <div style = " background-color: #e9e9e9; border-radius: 16px; text-align: center; padding: 50px;" >
+            <h4 style="padding-bottom: 30px;">Your bookings will show here</h4>
+            <%= link_to "Browse all songs", songs_path, class: "btn btn-secondary height:25%" %>
           </div>
+          <% else %>
         <% end %>
+
         <% @my_purchases.each do |booking| %>
           <%= link_to song_path(booking.song), class: 'card-product mb-3 d-flex' do %>
             <%= cl_image_tag booking.song.photo.key %>
@@ -94,6 +95,7 @@
             </div>
           <% end %>
         <% end %>
+
       </div>
     </div>
 </div>
