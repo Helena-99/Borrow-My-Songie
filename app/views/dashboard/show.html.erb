@@ -71,6 +71,12 @@
         <h2> My purchases </h2>
         <%= link_to "Browse all songs", songs_path, class: "btn btn-secondary height:25%" %>
       </div>
+        <%# Empty state %>
+        <% if current_user.bookings.empty?  %>
+          <div class="d-flex align-items-center justify-content-center">
+            <h3 style = "margin: auto; padding-top: 50px;">Your bookings will show here</h3>
+          </div>
+        <% end %>
         <% @my_purchases.each do |booking| %>
           <%= link_to song_path(booking.song), class: 'card-product mb-3 d-flex' do %>
             <%= cl_image_tag booking.song.photo.key %>

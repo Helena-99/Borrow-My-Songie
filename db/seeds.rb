@@ -36,7 +36,7 @@ IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.j
 "https://m.media-amazon.com/images/I/71Y55FU5VGL._UF894,1000_QL80_.jpg", "https://audioxide.com/api/images/album-artwork/the-college-dropout-kanye-west-medium-square.jpg"
 ]
 
-Song.create(
+taylor = Song.new(
   title: "Cruel Summer",
   release_year: 2019,
   artist: "Taylor Swift",
@@ -44,8 +44,13 @@ Song.create(
   price: 4.99,
   user: oliver,
   available: "true",
-  image_url: TAYLOR
 )
+image_url = TAYLOR
+file = URI.open(image_url)
+taylor.photo.attach(io: file, filename: "#{taylor[:title]}.png", content_type: "image/png")
+taylor.save!
+
+
 
 10.times do
   song_title = Faker::Music::RockBand.unique.song
