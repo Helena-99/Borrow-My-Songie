@@ -13,8 +13,11 @@
         <% if user_signed_in? %>
           <li class="nav-item active">
             <%= link_to "Upload a song", new_song_path, class: "nav-link" %>
-          <li class="nav-item active">
+          <li class="nav-item active dashboard", style="position: relative;">
             <%= link_to "My Dashboard", dashboard_path, class: "nav-link" %>
+            <% if current_user.inbound_bookings.where(status: 'pending').exists?%>
+              <span class="purple-dot"></span>
+            <% end %>
           </li>
           <li class="nav-item dropdown">
           <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
