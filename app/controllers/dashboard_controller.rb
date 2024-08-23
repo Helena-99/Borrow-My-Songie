@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
     # Songs owned by me [done]
     @user = current_user
     @my_songs = Song.where(user_id: @user.id)
+    @my_song = Song.last.user.id
     # Incoming bookings on my songs [done in view]
     # MY PURCHASES
     @my_purchases = Booking.includes(:song).where(user_id: @user.id)

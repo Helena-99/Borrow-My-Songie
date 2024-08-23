@@ -26,6 +26,8 @@ rebecca = User.create!(
   last_name: "O'Neill"
 )
 
+TAYLOR = "https://i1.sndcdn.com/artworks-D3XnYXYQA1hzUmIj-HPvM7A-t500x500.jpg"
+
 IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.jpg", "https://www.udiscovermusic.com/wp-content/uploads/2019/03/Queen-II-album-cover-820.jpg",
 "https://www.billboard.com/wp-content/uploads/2022/06/beyonce-I-Am...-Sasha-Fierce-album-art-billboard-1240.jpg?w=600", "https://upload.wikimedia.org/wikipedia/en/0/03/Listen_The_Kooks_cover.png",
 "https://vinyl-records.nl/prog-rock/david-bowie/aladdin-italy/aladdin-sane-10large.jpg", "https://m.media-amazon.com/images/I/71eXc8kVcQL._AC_UF894,1000_QL80_.jpg", "https://www.udiscovermusic.com/wp-content/uploads/2019/06/The-Killers-Hot-Fuss-album-cover-820.jpg",
@@ -33,6 +35,17 @@ IMAGES = ["https://upload.wikimedia.org/wikipedia/en/4/42/Beatles_-_Abbey_Road.j
 "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUP1MSr4r8a9FyoNnWVlUIucs54RF7HGryIA&s", "https://upload.wikimedia.org/wikipedia/en/f/fb/FMacRumours.PNG",
 "https://m.media-amazon.com/images/I/71Y55FU5VGL._UF894,1000_QL80_.jpg", "https://audioxide.com/api/images/album-artwork/the-college-dropout-kanye-west-medium-square.jpg"
 ]
+
+Song.create(
+  title: "Cruel Summer",
+  release_year: 2019,
+  artist: "Taylor Swift",
+  album: "Lover",
+  price: 4.99,
+  user: oliver,
+  available: "true",
+  image_url: TAYLOR
+)
 
 10.times do
   song_title = Faker::Music::RockBand.unique.song
