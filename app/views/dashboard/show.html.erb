@@ -1,3 +1,4 @@
+
 <div class="container mb-3">
 <h1> My dashboard</h1>
 
@@ -41,13 +42,6 @@
               <div class="card-product-infos">
                 <h2> <%= song.title %> </h2>
                 <p><%= song.album %> - <i><%= song.release_year %></i></p>
-                <% song.bookings.each do |booking| %>
-                  <% if Date.today >= booking.start_date && Date.today <= booking.end_date && booking.status == "accepted"%>
-                    <% song.available = false %>
-                  <% else %>
-                    <% song.available = true %>
-                  <% end %>
-                <% end %>
                 <p> <%= song.available ? "Available" : "Booked" %></p>
               </div>
             <% end %>

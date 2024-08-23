@@ -12,7 +12,7 @@
       </div>
       <div data-player-target='iframeDiv' class='d-none'></div>
       </div>
-      <div class="row" style="margin-left: 16px">
+      <div class="row" style="margin-left: 16px; margin-right: 16px">
         <h2 style="margin-top: 20px; margin-bottom: 40px;"><%= @song.title %> - <%= @song.release_year %> </h2>
         <div class="col">
           <p><strong>Artist:</strong> <%= @song.artist %></p>
@@ -22,10 +22,14 @@
         <p><strong>Price per day:</strong> £<%= @song.price %></p>
         <p><strong>Owner:</strong> <%= @song.user.first_name %> <%= @song.user.last_name %></p></p>
         </div>
-        <div> <strong> About:</strong> Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+        <div> <strong> About:</strong> "<%= @song.title %>" is a widely recognized track that has captivated audiences around the world. With its compelling lyrics and unforgettable melody, it continues to be a standout in the music industry. From its initial release to the present day, "<%= @song.title %>" remains a testament to the artistry and creativity that defines popular music.</div>
     </div>
   </div>
+
+
+
+
+
 
 
 <div data-controller = "toggle">
