@@ -19,7 +19,7 @@ class SongsController < ApplicationController
     @song = Song.new(song_params)
     @song.user = @user
     if @song.save
-      redirect_to songs_path
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end

@@ -37,7 +37,9 @@
         <% @my_songs.each do |song| %>
         <% if song.available == true %>
           <%= link_to song_path(song), class: 'card-product mb-3 d-flex' do %>
-            <%= cl_image_tag song.photo.key %>
+            <% if song.photo.key? %>
+              <%= cl_image_tag song.photo.key, height: 400, width: 400, crop: :fill %>
+            <% end %>
             <div class="card-product-infos">
               <h2> <%= song.title %> </h2>
               <p><%= song.album %> - <i><%= song.release_year %></i></p>
