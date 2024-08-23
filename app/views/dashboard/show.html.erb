@@ -1,8 +1,12 @@
-
 <div class="container mb-3">
-<h1> My dashboard</h1>
-
-<div class="bg-white card-request m-3 px-3 py-3">
+ <div class="row">
+    <div class="col">
+      <h1>My dashboard</h1>
+    </div>
+  </div>
+<div class="row">
+  <div class="col">
+<div class="bg-white card-request px-3 py-3">
     <h4>My pending requests</h4>
     <% pending_inbound_bookings = current_user.inbound_bookings.where(status: 'pending') %>
     <% if !pending_inbound_bookings.empty? %>
@@ -28,7 +32,8 @@
       </div>
     <% end %>
 </div>
-
+</div>
+  </div>
   <div class="row mt-4">
     <div class="col">
       <div class="d-flex justify-content-between align-items-center mb-2">
@@ -47,7 +52,6 @@
             <% end %>
           <% end %>
         <% end %>
-
         <% @my_songs.each do |song| %>
           <% if song.available == false %>
             <%= link_to song_path(song), class: 'card-product mb-3 d-flex bg-light' do %>
@@ -61,9 +65,6 @@
           <% end %>
         <% end %>
     </div>
-
-
-
     <div class="col">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h2> My purchases </h2>
@@ -77,7 +78,6 @@
           </div>
           <% else %>
         <% end %>
-
         <% @my_purchases.each do |booking| %>
           <%= link_to song_path(booking.song), class: 'card-product mb-3 d-flex' do %>
             <%= cl_image_tag booking.song.photo.key %>
@@ -95,7 +95,7 @@
             </div>
           <% end %>
         <% end %>
-
       </div>
     </div>
+  </div>
 </div>
