@@ -1,16 +1,15 @@
 <div class="container mb-3">
 <h1> My dashboard</h1>
-<div class="row " >
-<%# <div class="bg-white mb-3 rounded shadow px-3 py-2"> %>
-    <h2>My pending requests</h2>
-    <div class = "card-new-song">
+  
+<div class="bg-white card-request m-3 px-3 py-3">
+    <h4>My pending requests</h4>
     <% pending_inbound_bookings = current_user.inbound_bookings.where(status: 'pending') %>
     <% if !pending_inbound_bookings.empty? %>
       <% pending_inbound_bookings.each do |booking| %>
-          <%# <div class="booking-alert d-flex align-items-center mb-1"> %>
-          <div class="d-flex my-1">
-            <p class="flex-grow-1">
-            <%= booking.user.first_name %> has requested to book "<%= booking.song.title %>" from <%= booking.start_date %> to <%= booking.end_date %>
+          <div class="d-flex align-items-center mb-1" style="border-bottom: 1px solid #adb5bd">
+            <p class="flex-grow-1 mt-2">
+            <strong><%= booking.user.first_name %></strong> has requested to book "<%= booking.song.title %>"
+            from <%= booking.start_date %> to <%= booking.end_date %>
             </p>
             <div class='d-flex'>
               <%= form_with url: "/bookings/#{booking.id}/approve", method: :patch do |form|%>
@@ -30,7 +29,7 @@
     </div>
 </div>
 
-  <div class="row">
+  <div class="row mt-4">
     <div class="col">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h2> My songs </h2>
@@ -69,7 +68,7 @@
     <div class="col">
       <div class="d-flex justify-content-between align-items-center mb-2">
         <h2> My purchases </h2>
-        <%= link_to "Browse all songs", songs_path, class: "btn btn-primary height:25%" %>
+        <%= link_to "Browse all songs", songs_path, class: "btn btn-secondary height:25%" %>
       </div>
         <% @my_purchases.each do |booking| %>
           <%= link_to song_path(booking.song), class: 'card-product mb-3 d-flex' do %>
