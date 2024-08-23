@@ -1,8 +1,14 @@
 
 <div class="container mb-3">
-<h1> My dashboard</h1>
+ <div class="row">
+    <div class="col">
+      <h1>My dashboard</h1>
+    </div>
+  </div>
 
-<div class="bg-white card-request m-3 px-3 py-3">
+<div class="row">
+  <div class="col">
+<div class="bg-white card-request px-3 py-3">
     <h4>My pending requests</h4>
     <% pending_inbound_bookings = current_user.inbound_bookings.where(status: 'pending') %>
     <% if !pending_inbound_bookings.empty? %>
@@ -28,6 +34,8 @@
       </div>
     <% end %>
 </div>
+</div>
+  </div>
 
   <div class="row mt-4">
     <div class="col">
@@ -98,4 +106,5 @@
 
       </div>
     </div>
+  </div>
 </div>
